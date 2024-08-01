@@ -10,6 +10,8 @@ import SnapKit
 import AVFoundation
 import NaturalLanguage
 
+//Personal voice identifier = com.apple.speech.personalvoice.E4C90227-638B-4EC5-BA35-239CA340DCBC
+
 class ViewController: UIViewController {
     private let textView: UITextView = {
         let textView = UITextView()
@@ -33,11 +35,12 @@ class ViewController: UIViewController {
     }()
     
     private let synthesizer = AVSpeechSynthesizer()
+    private var personalVoiceIdentifier: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        requestPersonalVoiceAuthorization()
     }
     
     private func setupUI() {
@@ -61,6 +64,26 @@ class ViewController: UIViewController {
         }
     }
     
+    private func requestPersonalVoiceAuthorization() {
+        AVSpeechSynthesizer.requestPersonalVoiceAuthorization { status in
+            if status == .authorized {
+                self.findPersonalVoice()
+            } else {
+                print("access denied")
+            }
+        }
+    }
+    
+    private func findPersonalVoice() {
+        let voices = AVSpeechSynthesisVoice.speechVoices().filter { $0.voiceTraits == .isPersonalVoice }
+        if let personalVoice = voices.first {
+            self.personalVoiceIdentifier = personalVoice.identifier
+            print("Found Personal Voice: \(personalVoice.name)")
+        } else {
+            print("No Personal Voice found.")
+        }
+    }
+    
     @objc private func speakText() {
         guard let text = textView.text, !text.isEmpty else { return }
         
@@ -76,8 +99,13 @@ class ViewController: UIViewController {
         }
         
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: languageCode)
+        
+        if languageCode == "en", let personalVoiceIdentifier = personalVoiceIdentifier,
+            let personalVoice = AVSpeechSynthesisVoice(identifier: personalVoiceIdentifier) {
+            utterance.voice = personalVoice
+        } else {
+            utterance.voice = AVSpeechSynthesisVoice(language: languageCode)
+        }
         synthesizer.speak(utterance)
     }
 }
-
