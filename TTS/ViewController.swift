@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         requestPersonalVoiceAuthorization()
+        tapGesture()
     }
     
     private func setupUI() {
@@ -78,7 +79,6 @@ class ViewController: UIViewController {
         let voices = AVSpeechSynthesisVoice.speechVoices().filter { $0.voiceTraits == .isPersonalVoice }
         if let personalVoice = voices.first {
             self.personalVoiceIdentifier = personalVoice.identifier
-            print("Found Personal Voice: \(personalVoice.name)")
         } else {
             print("No Personal Voice found.")
         }
@@ -107,5 +107,10 @@ class ViewController: UIViewController {
             utterance.voice = AVSpeechSynthesisVoice(language: languageCode)
         }
         synthesizer.speak(utterance)
+    }
+    
+    private func tapGesture() {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
 }
