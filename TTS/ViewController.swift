@@ -67,10 +67,12 @@ class ViewController: UIViewController {
     
     private func requestPersonalVoiceAuthorization() {
         AVSpeechSynthesizer.requestPersonalVoiceAuthorization { status in
-            if status == .authorized {
-                self.findPersonalVoice()
-            } else {
-                print("access denied")
+            DispatchQueue.main.async {
+                if status == .authorized {
+                    self.findPersonalVoice()
+                } else {
+                    print("access denied")
+                }
             }
         }
     }
@@ -101,12 +103,15 @@ class ViewController: UIViewController {
         let utterance = AVSpeechUtterance(string: text)
         
         if languageCode == "en", let personalVoiceIdentifier = personalVoiceIdentifier,
-            let personalVoice = AVSpeechSynthesisVoice(identifier: personalVoiceIdentifier) {
+           let personalVoice = AVSpeechSynthesisVoice(identifier: personalVoiceIdentifier) {
             utterance.voice = personalVoice
         } else {
             utterance.voice = AVSpeechSynthesisVoice(language: languageCode)
         }
-        synthesizer.speak(utterance)
+        
+        DispatchQueue.main.async {
+            self.synthesizer.speak(utterance)
+        }
     }
     
     private func tapGesture() {
