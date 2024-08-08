@@ -7,19 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A24B19862C6380730048BAB9 /* MapboxSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = A24B19852C6380730048BAB9 /* MapboxSpeech */; };
+		A293D9552C63A0AD00EB109D /* TTSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D9542C63A0AD00EB109D /* TTSTabBarController.swift */; };
+		A293D9572C63A14300EB109D /* MapBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D9562C63A14300EB109D /* MapBoxViewController.swift */; };
+		A293D9592C63A43200EB109D /* BarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A293D9582C63A43200EB109D /* BarkViewController.swift */; };
 		A2D4B2F12C5A2E1500F8B8F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4B2F02C5A2E1500F8B8F3 /* AppDelegate.swift */; };
 		A2D4B2F32C5A2E1500F8B8F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4B2F22C5A2E1500F8B8F3 /* SceneDelegate.swift */; };
-		A2D4B2F52C5A2E1500F8B8F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4B2F42C5A2E1500F8B8F3 /* ViewController.swift */; };
+		A2D4B2F52C5A2E1500F8B8F3 /* AppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4B2F42C5A2E1500F8B8F3 /* AppleViewController.swift */; };
 		A2D4B2FA2C5A2E1500F8B8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D4B2F92C5A2E1500F8B8F3 /* Assets.xcassets */; };
 		A2D4B2FD2C5A2E1500F8B8F3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A2D4B2FC2C5A2E1500F8B8F3 /* Base */; };
 		A2D4B3062C5A2F1900F8B8F3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A2D4B3052C5A2F1900F8B8F3 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A293D9542C63A0AD00EB109D /* TTSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTSTabBarController.swift; path = Assets.xcassets/TTSTabBarController.swift; sourceTree = "<group>"; };
+		A293D9562C63A14300EB109D /* MapBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxViewController.swift; sourceTree = "<group>"; };
+		A293D9582C63A43200EB109D /* BarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarkViewController.swift; sourceTree = "<group>"; };
 		A2D4B2ED2C5A2E1500F8B8F3 /* TTS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D4B2F02C5A2E1500F8B8F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2D4B2F22C5A2E1500F8B8F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A2D4B2F42C5A2E1500F8B8F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A2D4B2F42C5A2E1500F8B8F3 /* AppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleViewController.swift; sourceTree = "<group>"; };
 		A2D4B2F92C5A2E1500F8B8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2D4B2FC2C5A2E1500F8B8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2D4B2FE2C5A2E1500F8B8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,12 +38,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D4B3062C5A2F1900F8B8F3 /* SnapKit in Frameworks */,
+				A24B19862C6380730048BAB9 /* MapboxSpeech in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A293D95A2C63A43600EB109D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A2D4B2F42C5A2E1500F8B8F3 /* AppleViewController.swift */,
+				A293D9562C63A14300EB109D /* MapBoxViewController.swift */,
+				A293D9582C63A43200EB109D /* BarkViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		A2D4B2E42C5A2E1500F8B8F3 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +74,13 @@
 		A2D4B2EF2C5A2E1500F8B8F3 /* TTS */ = {
 			isa = PBXGroup;
 			children = (
+				A293D95A2C63A43600EB109D /* ViewController */,
 				A2D4B2F02C5A2E1500F8B8F3 /* AppDelegate.swift */,
 				A2D4B2F22C5A2E1500F8B8F3 /* SceneDelegate.swift */,
-				A2D4B2F42C5A2E1500F8B8F3 /* ViewController.swift */,
 				A2D4B2F92C5A2E1500F8B8F3 /* Assets.xcassets */,
 				A2D4B2FB2C5A2E1500F8B8F3 /* LaunchScreen.storyboard */,
 				A2D4B2FE2C5A2E1500F8B8F3 /* Info.plist */,
+				A293D9542C63A0AD00EB109D /* TTSTabBarController.swift */,
 			);
 			path = TTS;
 			sourceTree = "<group>";
@@ -84,6 +103,7 @@
 			name = TTS;
 			packageProductDependencies = (
 				A2D4B3052C5A2F1900F8B8F3 /* SnapKit */,
+				A24B19852C6380730048BAB9 /* MapboxSpeech */,
 			);
 			productName = TTS;
 			productReference = A2D4B2ED2C5A2E1500F8B8F3 /* TTS.app */;
@@ -115,6 +135,7 @@
 			mainGroup = A2D4B2E42C5A2E1500F8B8F3;
 			packageReferences = (
 				A2D4B3042C5A2F1900F8B8F3 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A24B19842C6380730048BAB9 /* XCRemoteSwiftPackageReference "mapbox-speech-swift" */,
 			);
 			productRefGroup = A2D4B2EE2C5A2E1500F8B8F3 /* Products */;
 			projectDirPath = "";
@@ -142,9 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2D4B2F52C5A2E1500F8B8F3 /* ViewController.swift in Sources */,
+				A293D9572C63A14300EB109D /* MapBoxViewController.swift in Sources */,
+				A2D4B2F52C5A2E1500F8B8F3 /* AppleViewController.swift in Sources */,
 				A2D4B2F12C5A2E1500F8B8F3 /* AppDelegate.swift in Sources */,
 				A2D4B2F32C5A2E1500F8B8F3 /* SceneDelegate.swift in Sources */,
+				A293D9592C63A43200EB109D /* BarkViewController.swift in Sources */,
+				A293D9552C63A0AD00EB109D /* TTSTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +385,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A24B19842C6380730048BAB9 /* XCRemoteSwiftPackageReference "mapbox-speech-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-speech-swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		A2D4B3042C5A2F1900F8B8F3 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -372,6 +404,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A24B19852C6380730048BAB9 /* MapboxSpeech */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A24B19842C6380730048BAB9 /* XCRemoteSwiftPackageReference "mapbox-speech-swift" */;
+			productName = MapboxSpeech;
+		};
 		A2D4B3052C5A2F1900F8B8F3 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A2D4B3042C5A2F1900F8B8F3 /* XCRemoteSwiftPackageReference "SnapKit" */;

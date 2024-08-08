@@ -12,7 +12,7 @@ import NaturalLanguage
 
 //Personal voice identifier = com.apple.speech.personalvoice.E4C90227-638B-4EC5-BA35-239CA340DCBC
 
-class ViewController: UIViewController {
+final class AppleViewController: UIViewController {
     private let textView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 18)

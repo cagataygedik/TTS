@@ -1,6 +1,15 @@
 {
-  "originHash" : "4cdad746817ac9ed37e44dbe90a2ff25fc018954899b7d513e41a4bfc70f065a",
+  "originHash" : "f38b2ce95173c0cd8282769a188b7e69e1e1917263b7fa6880b6b66941050f37",
   "pins" : [
+    {
+      "identity" : "mapbox-speech-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-speech-swift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a9ef284deae227c6111c27a3535098c1e9a9d8e3"
+      }
+    },
     {
       "identity" : "snapkit",
       "kind" : "remoteSourceControl",
