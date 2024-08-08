@@ -1,6 +1,15 @@
 {
-  "originHash" : "f38b2ce95173c0cd8282769a188b7e69e1e1917263b7fa6880b6b66941050f37",
+  "originHash" : "5cb2059d4d10b87db8d05d4d290edbaddceb0e8f4bd2185273639d4f951f1ed2",
   "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire",
+      "state" : {
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
+      }
+    },
     {
       "identity" : "mapbox-speech-swift",
       "kind" : "remoteSourceControl",

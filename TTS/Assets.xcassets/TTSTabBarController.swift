@@ -15,7 +15,7 @@ final class TTSTabBarController: UITabBarController {
     }
     
     private func configureTabBar() {
-        viewControllers = [createAppleViewController(), createMapBoxViewController(), createBarkViewController()]
+        viewControllers = [createAppleViewController(), createMapBoxViewController(), createBarkViewController(), createElevenLabsViewController()]
     }
     
     func createAppleViewController() -> UINavigationController {
@@ -37,8 +37,16 @@ final class TTSTabBarController: UITabBarController {
     func createBarkViewController() -> UINavigationController {
         let barkViewController = BarkViewController()
         barkViewController.title = "Bark"
-        let tabBarItem = UITabBarItem(title: "Bark", image: UIImage(systemName: "dog.fill"), tag: 1)
+        let tabBarItem = UITabBarItem(title: "Bark", image: UIImage(systemName: "dog.fill"), tag: 2)
         barkViewController.tabBarItem = tabBarItem
         return UINavigationController(rootViewController: barkViewController)
+    }
+    
+    func createElevenLabsViewController() -> UINavigationController {
+        let elevenLabsViewController = ElevenLabsViewController()
+        elevenLabsViewController.title = "ElevenLabs"
+        let tabBarItem = UITabBarItem(title: "ElevenLabs", image: UIImage(systemName: "numbersign"), tag: 3)
+        elevenLabsViewController.tabBarItem = tabBarItem
+        return UINavigationController(rootViewController: elevenLabsViewController)
     }
 }

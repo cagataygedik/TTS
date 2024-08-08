@@ -9,6 +9,12 @@ import UIKit
 import AVFAudio
 import NaturalLanguage
 
+/*
+ This view controller normally uses Suno-AI's Bark model. If you want to run with swift code,
+ you have to write your own Python code for run this model.
+ For more check out this repo: https://github.com/suno-ai/bark
+ */
+
 final class BarkViewController: UIViewController {
     private let textView: UITextView = {
         let textView = UITextView()

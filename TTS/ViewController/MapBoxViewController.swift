@@ -10,6 +10,8 @@ import NaturalLanguage
 import MapboxSpeech
 import AVFoundation
 
+// https://github.com/mapbox/mapbox-speech-swift
+
 final class MapBoxViewController: UIViewController {
     private let textView: UITextView = {
         let textView = UITextView()
@@ -32,11 +34,12 @@ final class MapBoxViewController: UIViewController {
         return button
     }()
     
-    private let mapboxAccessToken = "pk.eyJ1IjoiY2VsaWxnZWRpayIsImEiOiJjbHpqb3F2eTMwdW5oMnhzY2I4aWpiOW8zIn0.RSoNaFxr4fqmKlB1e9Cc3Q"
+    private let mapboxAccessToken = "<Your_MapBox_Token>"
     private var audioPlayer: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         setupUI()
         tapGesture()
     }

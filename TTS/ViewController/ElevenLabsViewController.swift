@@ -1,18 +1,17 @@
 //
-//  ViewController.swift
+//  ElevenLabsViewController.swift
 //  TTS
 //
-//  Created by Celil Çağatay Gedik on 31.07.2024.
+//  Created by Celil Çağatay Gedik on 8.08.2024.
 //
 
 import UIKit
-import SnapKit
-import AVFoundation
-import NaturalLanguage
+import Alamofire
+import AVFAudio
 
-//Personal voice identifier = com.apple.speech.personalvoice.E4C90227-638B-4EC5-BA35-239CA340DCBC
+// https://elevenlabs.io
 
-final class AppleViewController: UIViewController {
+final class ElevenLabsViewController: UIViewController {
     private let textView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 18)
@@ -34,14 +33,13 @@ final class AppleViewController: UIViewController {
         return button
     }()
     
-    private let synthesizer = AVSpeechSynthesizer()
-    private var personalVoiceIdentifier: String?
+    private var audioPlayer: AVAudioPlayer?
+    private let elevenLabsAPIKey = "<YOUR_API_KEY>"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         setupUI()
-        requestPersonalVoiceAuthorization()
         tapGesture()
     }
     
@@ -66,52 +64,50 @@ final class AppleViewController: UIViewController {
         }
     }
     
-    private func requestPersonalVoiceAuthorization() {
-        AVSpeechSynthesizer.requestPersonalVoiceAuthorization { status in
-            DispatchQueue.main.async {
-                if status == .authorized {
-                    self.findPersonalVoice()
-                } else {
-                    print("access denied")
+    @objc private func speakText() {
+        guard let text = textView.text, !text.isEmpty else { return }
+        
+        let parameters: [String: Any] = [
+            "text": text,
+            "voice_settings": [
+                "stability": 0.5,
+                "similarity_boost": 0.5
+            ]
+        ]
+        
+        let headers: HTTPHeaders = [
+            "xi-api-key": elevenLabsAPIKey,
+            "Content-Type": "application/json"
+        ]
+        
+        let voiceId = "JBFqnCBsd6RMkjVDRZzb"
+        let url = "https://api.elevenlabs.io/v1/text-to-speech/\(voiceId)"
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseData { response in
+            if let statusCode = response.response?.statusCode, statusCode != 200 {
+                print("Error: Received status code \(statusCode)")
+                if let json = try? JSONSerialization.jsonObject(with: response.data ?? Data(), options: []) as? [String: Any] {
+                    print("Response JSON: \(json)")
                 }
+                return
+            }
+            
+            switch response.result {
+            case .success(let data):
+                self.playAudio(data: data)
+            case .failure(let error):
+                print("Error generating speech: \(error.localizedDescription)")
             }
         }
     }
     
-    private func findPersonalVoice() {
-        let voices = AVSpeechSynthesisVoice.speechVoices().filter { $0.voiceTraits == .isPersonalVoice }
-        if let personalVoice = voices.first {
-            self.personalVoiceIdentifier = personalVoice.identifier
-        } else {
-            print("No Personal Voice found.")
-        }
-    }
-    
-    @objc private func speakText() {
-        guard let text = textView.text, !text.isEmpty else { return }
-        
-        if synthesizer.isSpeaking {
-            synthesizer.stopSpeaking(at: .immediate)
-        }
-        
-        let recognizer = NLLanguageRecognizer()
-        recognizer.processString(text)
-        guard let languageCode = recognizer.dominantLanguage?.rawValue else {
-            print("can't detect language")
-            return
-        }
-        
-        let utterance = AVSpeechUtterance(string: text)
-        
-        if languageCode == "en", let personalVoiceIdentifier = personalVoiceIdentifier,
-           let personalVoice = AVSpeechSynthesisVoice(identifier: personalVoiceIdentifier) {
-            utterance.voice = personalVoice
-        } else {
-            utterance.voice = AVSpeechSynthesisVoice(language: languageCode)
-        }
-        
-        DispatchQueue.main.async {
-            self.synthesizer.speak(utterance)
+    private func playAudio(data: Data) {
+        do {
+            audioPlayer = try AVAudioPlayer(data: data)
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.play()
+        } catch {
+            print("Error initializing AVAudioPlayer: \(error.localizedDescription)")
         }
     }
     
